@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://www.mycas.org.uk/schemas/RegisterViaNecCardTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/RegisterViaNecCardTypes" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl&amp;resource=file-270176141318041078.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:complexType name="RegisterViaNECCardRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestBody" type="tns:RequestBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestBody">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NECCardNumber">
+        <xs:simpleType>
+          <xs:restriction base="xs:long">
+            <xs:maxExclusive value="9999999999999999" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[0-9]*" />
+            <xs:minExclusive value="0" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PostCode">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="8" />
+            <xs:pattern value="[a-zA-Z0-9 ]*" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="EmailAddress">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="100" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[A-Za-z0-9]+[A-Za-z0-9._-]*@([A-Za-z0-9-]+\.)+([A-Za-z0-9]{2,6})" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MobileNumber">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Username">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="6" />
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z0-9@._]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegisterViaNECCardResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResponseHead" type="ns1:ResponseHead" />
+      <xs:element minOccurs="0" name="ResponseBody" type="tns:ResponseBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="0" name="UPRN" type="ns1:UPRNType" />
+      <xs:element minOccurs="0" name="NECCardNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="Username" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

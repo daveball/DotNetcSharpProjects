@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://www.mycas.org.uk/schemas/RegisterOfflineTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/RegisterOfflineTypes" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/RegisterOfflineService?wsdl&amp;resource=file-1695141810433206010.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:complexType name="RegisterOfflineRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestBody" type="tns:RequestBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestBody">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="1" maxOccurs="1" name="CitizenDetails" type="ns1:CitizenDetails" />
+        <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      </xs:choice>
+      <xs:element minOccurs="0" maxOccurs="1" name="Contact" type="ns1:Contact" />
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="1" maxOccurs="1" name="AddressInput" type="ns1:AddressInput" />
+        <xs:element minOccurs="1" maxOccurs="1" name="UPRN" type="ns1:UPRNType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegisterOfflineResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseHead" type="ns1:ResponseHead" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseBody" type="tns:ResponseBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseBody">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UPRN" type="ns1:UPRNType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="ns1:EmailAddressType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoA" type="ns1:LoAType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

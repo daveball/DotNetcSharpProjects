@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/GetNotificationByIDService?wsdl&amp;resource=file-3330849186155767961.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:complexType name="RegistrationNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" name="CitizenDetails" type="tns:CitizenDetails" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredName" type="ns1:PreferredName" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Contact" type="ns1:Contact" />
+      <xs:element minOccurs="1" name="UPRN" type="ns1:UPRNType" />
+      <xs:element minOccurs="1" name="Address" type="ns1:AddressInput" />
+      <xs:element minOccurs="1" name="LoA" type="tns:LoAType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangePersonalDetailsNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" name="CitizenDetails" type="tns:CitizenDetails" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredName" type="ns1:PreferredName" />
+      <xs:element minOccurs="1" name="LoA" type="tns:LoAType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangeAddressNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" name="UPRN" type="ns1:UPRNType" />
+      <xs:element minOccurs="1" name="Address" type="ns1:AddressInput" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeAddressActionFlag" type="tns:ChangeAddressActionFlagType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CitizenDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Title">
+        <xs:simpleType>
+          <xs:restriction base="xs:string" />
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="ns1:Name" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gender" type="ns1:GenderType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeathNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateOfDeath" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NotificationTypeCode">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="NotificationID">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="LoAType">
+    <xs:restriction base="xs:string">
+      <xs:length value="4" />
+      <xs:whiteSpace value="collapse" />
+      <xs:enumeration value="LoA0" />
+      <xs:enumeration value="LoA1" />
+      <xs:enumeration value="LoA2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ChangeAddressActionFlagType">
+    <xs:restriction base="xs:string">
+      <xs:length value="1" />
+      <xs:whiteSpace value="collapse" />
+      <xs:enumeration value="P" />
+      <xs:enumeration value="S" />
+      <xs:enumeration value="D" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NECCardActionFlagType">
+    <xs:restriction base="xs:string">
+      <xs:length value="1" />
+      <xs:whiteSpace value="collapse" />
+      <xs:enumeration value="C" />
+      <xs:enumeration value="H" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="UCRNResolutionNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewUCRN" type="ns1:UCRNType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UPRNResolutionNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UPRN" type="ns1:UPRNType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NewUPRN" type="ns1:UPRNType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NECCardNotification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRN" type="ns1:UCRNType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NECCard" type="tns:NECCardType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CitizenProofs" type="ns1:CitizenProofs" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NECCardActionFlag" type="tns:NECCardActionFlagType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NECCardType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NECCardNumber" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsYoungScotOptOut" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeactiveDate" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Notification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationID" type="tns:NotificationID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotificationTypeCode" type="tns:NotificationTypeCode" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

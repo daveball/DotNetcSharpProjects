@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tcs/cas/webservice_producer" name="coreSampleClassService" targetNamespace="http://tcs/cas/webservice_producer" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="http://tcs/cas/webservice_producer" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="addValues" type="tns:addValues" />
+      <xs:element name="addValuesResponse" type="tns:addValuesResponse" />
+      <xs:element name="generateStr" type="tns:generateStr" />
+      <xs:element name="generateStrResponse" type="tns:generateStrResponse" />
+      <xs:complexType name="addValues">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="coreSampleVO" type="tns:coreSampleVO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="coreSampleVO">
+        <xs:sequence>
+          <xs:element name="a" type="xs:int" />
+          <xs:element name="b" type="xs:int" />
+          <xs:element name="c" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addValuesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addValuesResponse" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="generateStr">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="generateStrResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="generateStrResponse" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="coreSampleClass_generateStr">
+    <part name="generateStr" element="tns:generateStr" />
+  </message>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="coreSampleClass_generateStrResponse">
+    <part name="generateStrResponse" element="tns:generateStrResponse" />
+  </message>
+  <message name="coreSampleClass_addValuesResponse">
+    <part name="addValuesResponse" element="tns:addValuesResponse" />
+  </message>
+  <message name="coreSampleClass_addValues">
+    <part name="addValues" element="tns:addValues" />
+  </message>
+  <portType name="coreSampleClass">
+    <operation name="addValues" parameterOrder="addValues">
+      <input message="tns:coreSampleClass_addValues" />
+      <output message="tns:coreSampleClass_addValuesResponse" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+    <operation name="generateStr" parameterOrder="generateStr">
+      <input message="tns:coreSampleClass_generateStr" />
+      <output message="tns:coreSampleClass_generateStrResponse" />
+    </operation>
+  </portType>
+  <binding name="coreSampleClassBinding" type="tns:coreSampleClass">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="addValues">
+      <soap:operation soapAction="http://tcs/cas/webservice_producer/addValues" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="generateStr">
+      <soap:operation soapAction="http://tcs/cas/webservice_producer/generateStr" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="coreSampleClassService">
+    <port name="coreSampleClassPort" binding="tns:coreSampleClassBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/Proxy/ESB_Proxy_Service" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:Q1="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" xmlns:tns="https://www.mycas.org.uk/schemas/notifications/AcknowledgeNotificationTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/notifications/AcknowledgeNotificationTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/AcknowledgeNotificationService?wsdl&amp;resource=file-5041320236228690445.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/AcknowledgeNotificationService?wsdl&amp;resource=file-5103650610651388031.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" />
+  <xs:complexType name="AcknowledgeNotificationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestBody" type="tns:RequestBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestBody">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Notification" type="Q1:Notification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AcknowledgeNotificationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseHead" type="ns1:ResponseHead" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

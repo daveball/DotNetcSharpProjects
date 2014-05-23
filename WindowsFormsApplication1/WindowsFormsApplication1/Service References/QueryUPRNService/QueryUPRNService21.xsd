@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://www.mycas.org.uk/schemas/QueryUPRNTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/QueryUPRNTypes" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl&amp;resource=file-6407657722133719484.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:complexType name="QueryUPRNRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestBody" type="tns:RequestBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestBody">
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="ns1:Address" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UPRN" type="ns1:UPRNType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="QueryUPRNResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseHead" type="ns1:ResponseHead" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseBody" type="tns:ResponseBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseBody">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="MatchedAddressDetails" type="tns:MatchedAddressDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MatchedAddressDetails">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="Address" type="tns:Address" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressDetails" type="ns1:AddressDetails" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AddressString" type="ns1:AddressString" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UPRN" type="ns1:UPRNType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f05e7206-2043-46f9-8752-293f1a0722fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RegisterViaNECCardService.xsd" MetadataType="Schema" ID="e3e7034a-99bb-4b74-80e5-3e8e3d6339e6" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl&amp;resource=file-3492397402151409685.tmp&amp;protocol=http" />
+    <MetadataFile FileName="RegisterViaNECCardService1.xsd" MetadataType="Schema" ID="dde07180-ede7-489a-8b3e-74c1c5922560" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl&amp;resource=file-270176141318041078.tmp&amp;protocol=http" />
+    <MetadataFile FileName="RegisterViaNECCardServiceService.wsdl" MetadataType="Wsdl" ID="de539d1a-45d4-4dad-b967-8f9d96e2d94d" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.mycas.org.uk/services/QueryUCRNService" xmlns:ns1="https://www.mycas.org.uk/schemas/QueryUCRNTypes" name="QueryUCRNServiceService" targetNamespace="https://www.mycas.org.uk/services/QueryUCRNService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="https://www.mycas.org.uk/services/QueryUCRNService" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/QueryUCRNService?wsdl&amp;resource=file-2920859967666776478.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/QueryUCRNTypes" />
+      <xs:element name="CallerToken" nillable="true" type="xs:string" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="queryUCRN" type="tns:queryUCRN" />
+      <xs:element name="queryUCRNResponse" type="tns:queryUCRNResponse" />
+      <xs:complexType name="queryUCRN">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="queryUCRNRequest" type="ns1:QueryUCRNRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="queryUCRNResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="queryUCRNResponse" type="ns1:QueryUCRNResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="QueryUCRNService_queryUCRNResponse">
+    <part name="queryUCRNResponse" element="tns:queryUCRNResponse" />
+  </message>
+  <message name="QueryUCRNService_queryUCRN">
+    <part name="queryUCRN" element="tns:queryUCRN" />
+    <part name="CallerToken" element="tns:CallerToken" />
+  </message>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <portType name="QueryUCRNService">
+    <operation name="queryUCRN" parameterOrder="queryUCRN CallerToken">
+      <input message="tns:QueryUCRNService_queryUCRN" />
+      <output message="tns:QueryUCRNService_queryUCRNResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="QueryUCRNServiceBinding" type="tns:QueryUCRNService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="queryUCRN">
+      <soap:operation soapAction="https://www.mycas.org.uk/services/QueryUCRNService" />
+      <input>
+        <soap:body use="literal" parts="queryUCRN" />
+        <soap:header message="tns:QueryUCRNService_queryUCRN" part="CallerToken" use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="QueryUCRNServiceService">
+    <port name="QueryUCRNServicePort" binding="tns:QueryUCRNServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/QueryUCRNService" />
+    </port>
+  </service>
+</definitions>

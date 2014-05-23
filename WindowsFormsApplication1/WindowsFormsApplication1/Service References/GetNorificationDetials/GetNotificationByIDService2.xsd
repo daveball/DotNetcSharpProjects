@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ns10="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" xmlns:tns="https://www.mycas.org.uk/schemas/notifications/GetNotificationByIDTypes" xmlns:ns1="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/notifications/GetNotificationByIDTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/GetNotificationByIDService?wsdl&amp;resource=file-3330849186155767961.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/CommonTypes" />
+  <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/GetNotificationByIDService?wsdl&amp;resource=file-8891721156931372337.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/notifications/CommonNotificationTypes" />
+  <xs:complexType name="GetNotificationByIDRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RequestBody" type="tns:RequestBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestBody">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Notification" type="ns10:Notification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetNotificationByIDResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseHead" type="ns1:ResponseHead" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseBody" type="tns:ResponseBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseBody">
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="RegistrationNotification" type="ns10:RegistrationNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangePersonalDetailsNotification" type="ns10:ChangePersonalDetailsNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeAddressNotification" type="ns10:ChangeAddressNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeathNotification" type="ns10:DeathNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UCRNResolutionNotification" type="ns10:UCRNResolutionNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UPRNResolutionNotification" type="ns10:UPRNResolutionNotification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NECCardNotification" type="ns10:NECCardNotification" />
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://www.mycas.org.uk/schemas/CommonTypes" targetNamespace="https://www.mycas.org.uk/schemas/CommonTypes" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ResponseHead">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseMessage" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UCRNType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="UCRNType">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:whiteSpace value="collapse" />
+              <xs:enumeration value="P" />
+              <xs:enumeration value="T" />
+              <xs:enumeration value="PU" />
+              <xs:maxLength value="2" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="UPRNType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="UPRNType">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="P" />
+              <xs:enumeration value="T" />
+              <xs:enumeration value="PU" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CitizenDetails">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="tns:Name" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gender" type="tns:GenderType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PlaceOfBirth" type="tns:PlaceOfBirth" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MothersBirthSurname" type="tns:MothersBirthSurname" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FirstName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]+" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MiddleName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="LastName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]+" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BasicCitizenDetails">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="tns:Name" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Gender" type="tns:GenderType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DateOfDeath" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PlaceOfBirth" type="tns:PlaceOfBirth" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MothersBirthSurname" type="tns:MothersBirthSurname" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PostCode" type="tns:PostCode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressString" type="tns:AddressString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AddressString">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1000" />
+      <xs:pattern value="[a-zA-Z0-9()&amp;/,.\-_ \\ ]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddressDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressLine" type="tns:AddressLine" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Town" type="tns:Town" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PostCode" type="tns:PostCode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LACode" type="tns:LACode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressProvider" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressLine">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AddressLine1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="collapse" />
+            <xs:maxLength value="150" />
+            <xs:pattern value="[A-Za-z0-9.,/-//&amp;() ]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressLine2">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="collapse" />
+            <xs:maxLength value="150" />
+            <xs:pattern value="[A-Za-z0-9.,/-//&amp;() ]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressLine3">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="collapse" />
+            <xs:maxLength value="150" />
+            <xs:pattern value="[A-Za-z0-9.,/-//&amp;() ]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="GenderType">
+    <xs:restriction base="xs:string">
+      <xs:length value="1" />
+      <xs:whiteSpace value="collapse" />
+      <xs:enumeration value="M" />
+      <xs:enumeration value="F" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PreferredName">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredFirstName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredMiddleName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredLastName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[a-zA-Z]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Contact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MobileNumber">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LandlineNumber">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="EmailAddress">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="100" />
+            <xs:pattern value="[A-Za-z0-9]+[A-Za-z0-9._-]*@([A-Za-z0-9-]+\.)+([A-Za-z0-9]{2,6})" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AttachmentBytes" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdditionalCitizenDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PreferredName" type="tns:PreferredName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NickName" type="tns:NickName" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountDetails">
+    <xs:sequence>
+      <xs:element name="Consent" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LoA" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LoAApprovedByOrgCode" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Username" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AccountStatus" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Document" type="tns:Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CardDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Card" type="tns:Card" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Card">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CardNumber" type="xs:long" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CardType" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressInput">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AddressLine" type="tns:AddressLine" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Town" type="tns:Town" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PostCode" type="tns:PostCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LACode" type="tns:LACode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Town">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:pattern value="[a-zA-Z ]*" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LACode">
+    <xs:restriction base="xs:long">
+      <xs:pattern value="[0-9]+" />
+      <xs:whiteSpace value="collapse" />
+      <xs:maxExclusive value="9999999999" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UsernameType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="6" />
+      <xs:maxLength value="50" />
+      <xs:whiteSpace value="collapse" />
+      <xs:pattern value="[A-Za-z0-9_@.]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EmailAddressType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100" />
+      <xs:pattern value="[A-Za-z0-9]+[A-Za-z0-9._-]*@([A-Za-z0-9-]+\.)+([A-Za-z0-9]{2,6})" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NECCardNumberType">
+    <xs:restriction base="xs:long">
+      <xs:maxExclusive value="9999999999999999" />
+      <xs:whiteSpace value="collapse" />
+      <xs:pattern value="[0-9]*" />
+      <xs:minExclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CitizenProofs">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="2" name="IdentityProof" type="tns:IdentityProofType" />
+      <xs:element minOccurs="1" maxOccurs="2" name="AddressProof" type="tns:AddressProofType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="IdentityProofType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:pattern value="[a-zA-Z0-9]*" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AddressProofType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:pattern value="[a-zA-Z0-9]*" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NickName">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:pattern value="[a-zA-Z]*" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PostCode">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="8" />
+      <xs:pattern value="[a-zA-Z0-9 ]+" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MobileNumber">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:whiteSpace value="collapse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PlaceOfBirth">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:whiteSpace value="collapse" />
+      <xs:pattern value="[a-zA-Z ]+" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MothersBirthSurname">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+      <xs:whiteSpace value="collapse" />
+      <xs:pattern value="[a-zA-Z ]+" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

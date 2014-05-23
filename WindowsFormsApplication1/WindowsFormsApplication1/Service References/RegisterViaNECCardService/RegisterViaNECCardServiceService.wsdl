@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.mycas.org.uk/services/RegisterViaNECCardService" xmlns:ns1="https://www.mycas.org.uk/schemas/RegisterViaNecCardTypes" name="RegisterViaNECCardServiceService" targetNamespace="https://www.mycas.org.uk/services/RegisterViaNECCardService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="https://www.mycas.org.uk/services/RegisterViaNECCardService" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService?wsdl&amp;resource=file-3492397402151409685.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/RegisterViaNecCardTypes" />
+      <xs:element name="CallerToken" nillable="true" type="xs:string" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="addNewUserNec" type="tns:addNewUserNec" />
+      <xs:element name="addNewUserNecResponse" type="tns:addNewUserNecResponse" />
+      <xs:complexType name="addNewUserNec">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="registerViaNECCardRequest" type="ns1:RegisterViaNECCardRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addNewUserNecResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegisterViaNECCardResponse" type="ns1:RegisterViaNECCardResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <message name="RegisterViaNECCardService_addNewUserNecResponse">
+    <part name="addNewUserNecResponse" element="tns:addNewUserNecResponse" />
+  </message>
+  <message name="RegisterViaNECCardService_addNewUserNec">
+    <part name="addNewUserNec" element="tns:addNewUserNec" />
+    <part name="CallerToken" element="tns:CallerToken" />
+  </message>
+  <portType name="RegisterViaNECCardService">
+    <operation name="addNewUserNec" parameterOrder="addNewUserNec CallerToken">
+      <input message="tns:RegisterViaNECCardService_addNewUserNec" />
+      <output message="tns:RegisterViaNECCardService_addNewUserNecResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="RegisterViaNECCardServiceBinding" type="tns:RegisterViaNECCardService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="addNewUserNec">
+      <soap:operation soapAction="https://www.mycas.org.uk/services/AddNewUserNec" />
+      <input>
+        <soap:body use="literal" parts="addNewUserNec" />
+        <soap:header message="tns:RegisterViaNECCardService_addNewUserNec" part="CallerToken" use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="RegisterViaNECCardServiceService">
+    <port name="RegisterViaNECCardServicePort" binding="tns:RegisterViaNECCardServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/RegisterViaNECCardService" />
+    </port>
+  </service>
+</definitions>

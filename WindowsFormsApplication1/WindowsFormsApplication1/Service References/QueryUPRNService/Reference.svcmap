@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9cccbb39-4169-4409-bc31-829b992e5379" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="QueryUPRNService2.xsd" MetadataType="Schema" ID="d53ad6a0-de85-410e-a0ab-8e42c7710661" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl&amp;resource=file-6407657722133719484.tmp&amp;protocol=http" />
+    <MetadataFile FileName="QueryUPRNServiceService.wsdl" MetadataType="Wsdl" ID="dcbe4a59-4c50-4362-83e0-9109d738d56d" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl" />
+    <MetadataFile FileName="QueryUPRNService21.xsd" MetadataType="Schema" ID="4241c307-74e2-4f8c-b883-77efa7439010" SourceId="1" SourceUrl="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl&amp;resource=file-3231811242762446847.tmp&amp;protocol=http" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

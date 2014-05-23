@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.mycas.org.uk/services/QueryUPRNService" xmlns:ns2="https://www.mycas.org.uk/schemas/QueryUPRNTypes" name="QueryUPRNServiceService" targetNamespace="https://www.mycas.org.uk/services/QueryUPRNService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:ns1="https://www.mycas.org.uk/schemas/QueryUPRNTypes" targetNamespace="https://www.mycas.org.uk/services/QueryUPRNService" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService?wsdl&amp;resource=file-7103461097117565609.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/QueryUPRNTypes" />
+      <xs:element name="CallerToken" nillable="true" type="xs:string" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="queryUPRN" type="tns:queryUPRN" />
+      <xs:element name="queryUPRNResponse" type="tns:queryUPRNResponse" />
+      <xs:complexType name="queryUPRN">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="queryUPRNRequest" type="ns1:QueryUPRNRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="queryUPRNResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="queryUPRNResponse" type="ns1:QueryUPRNResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="QueryUPRNService_queryUPRNResponse">
+    <part name="queryUPRNResponse" element="tns:queryUPRNResponse" />
+  </message>
+  <message name="QueryUPRNService_queryUPRN">
+    <part name="queryUPRN" element="tns:queryUPRN" />
+    <part name="CallerToken" element="tns:CallerToken" />
+  </message>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <portType name="QueryUPRNService">
+    <operation name="queryUPRN" parameterOrder="queryUPRN CallerToken">
+      <input message="tns:QueryUPRNService_queryUPRN" />
+      <output message="tns:QueryUPRNService_queryUPRNResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="QueryUPRNServiceBinding" type="tns:QueryUPRNService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="queryUPRN">
+      <soap:operation soapAction="https://www.mycas.org.uk/services/queryUPRN" />
+      <input>
+        <soap:body use="literal" parts="queryUPRN" />
+        <soap:header message="tns:QueryUPRNService_queryUPRN" part="CallerToken" use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="QueryUPRNServiceService">
+    <port name="QueryUPRNServicePort" binding="tns:QueryUPRNServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/QueryUPRNService" />
+    </port>
+  </service>
+</definitions>

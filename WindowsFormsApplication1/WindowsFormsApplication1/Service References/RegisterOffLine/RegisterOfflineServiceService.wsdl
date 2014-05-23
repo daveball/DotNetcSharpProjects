@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:ns2="https://www.mycas.org.uk/schemas/CommonTypes" xmlns:tns="https://www.mycas.org.uk/services/RegisterOfflineService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="https://www.mycas.org.uk/schemas/RegisterOfflineTypes" name="RegisterOfflineServiceService" targetNamespace="https://www.mycas.org.uk/services/RegisterOfflineService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="https://www.mycas.org.uk/services/RegisterOfflineService" version="1.0">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/RegisterOfflineService?wsdl&amp;resource=file-875590233357215760.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/RegisterOfflineTypes" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="registerOffline" type="tns:registerOffline" />
+      <xs:element name="registerOfflineResponse" type="tns:registerOfflineResponse" />
+      <xs:complexType name="registerOffline">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="registerOfflineRequest" type="ns1:RegisterOfflineRequest" />
+          <xs:element minOccurs="1" name="CallerToken">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:minLength value="6" />
+                <xs:maxLength value="50" />
+                <xs:whiteSpace value="collapse" />
+                <xs:pattern value="[A-Za-z0-9_@.\-]+" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerOfflineResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegisterOfflineResponse" type="ns1:RegisterOfflineResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <message name="RegisterOfflineService_registerOfflineResponse">
+    <part name="registerOfflineResponse" element="tns:registerOfflineResponse" />
+  </message>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="RegisterOfflineService_registerOffline">
+    <part name="registerOffline" element="tns:registerOffline" />
+  </message>
+  <portType name="RegisterOfflineService">
+    <operation name="registerOffline" parameterOrder="registerOffline">
+      <input message="tns:RegisterOfflineService_registerOffline" />
+      <output message="tns:RegisterOfflineService_registerOfflineResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="RegisterOfflineServiceBinding" type="tns:RegisterOfflineService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="registerOffline">
+      <soap:operation soapAction="https://www.mycas.org.uk/services/RegisterOffline" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="RegisterOfflineServiceService">
+    <port name="RegisterOfflineServicePort" binding="tns:RegisterOfflineServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/RegisterOfflineService" />
+    </port>
+  </service>
+</definitions>

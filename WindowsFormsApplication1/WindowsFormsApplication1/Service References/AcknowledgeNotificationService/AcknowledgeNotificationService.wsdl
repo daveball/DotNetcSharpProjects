@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd1="https://www.mycas.org.uk/schemas/notifications/AcknowledgeNotificationTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.mycas.org.uk/service/notification/AcknowledgeNotificationService" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="AcknowledgeNotificationService" targetNamespace="https://www.mycas.org.uk/service/notification/AcknowledgeNotificationService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:xsd="https://www.mycas.org.uk/schemas/notifications/AcknowledgeNotificationTypes" targetNamespace="https://www.mycas.org.uk/service/notification/AcknowledgeNotificationService" version="1.0">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/AcknowledgeNotificationService?wsdl&amp;resource=file-1032544506388710473.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/notifications/AcknowledgeNotificationTypes" />
+      <xs:element name="CallerToken" nillable="true" type="xs:string" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="acknowledgeNotification" type="tns:acknowledgeNotification" />
+      <xs:element name="acknowledgeNotificationResponse" type="tns:acknowledgeNotificationResponse" />
+      <xs:complexType name="acknowledgeNotification">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="acknowledgeNotificationRequest" type="xsd:AcknowledgeNotificationRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="acknowledgeNotificationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="acknowledgeNotificationResponse" type="xsd:AcknowledgeNotificationResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="AcknowledgeNotificationService_acknowledgeNotificationResponse">
+    <part name="acknowledgeNotificationResponse" element="tns:acknowledgeNotificationResponse" />
+  </message>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="AcknowledgeNotificationService_acknowledgeNotification">
+    <part name="acknowledgeNotification" element="tns:acknowledgeNotification" />
+    <part name="CallerToken" element="tns:CallerToken" />
+  </message>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <portType name="AcknowledgeNotificationService">
+    <operation name="acknowledgeNotification" parameterOrder="acknowledgeNotification CallerToken">
+      <input message="tns:AcknowledgeNotificationService_acknowledgeNotification" />
+      <output message="tns:AcknowledgeNotificationService_acknowledgeNotificationResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="AcknowledgeNotificationServiceBinding" type="tns:AcknowledgeNotificationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="acknowledgeNotification">
+      <soap:operation soapAction="https://www.mycas.org.uk/service/AcknowledgeNotificationService/acknowledgeNotification" />
+      <input>
+        <soap:body use="literal" parts="acknowledgeNotification" />
+        <soap:header message="tns:AcknowledgeNotificationService_acknowledgeNotification" part="CallerToken" use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="AcknowledgeNotificationServiceService">
+    <port name="AcknowledgeNotificationServicePort" binding="tns:AcknowledgeNotificationServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/AcknowledgeNotificationService" />
+    </port>
+  </service>
+</definitions>

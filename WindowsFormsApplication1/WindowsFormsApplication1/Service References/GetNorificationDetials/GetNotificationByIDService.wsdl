@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="https://www.mycas.org.uk/schemas/notifications/GetNotificationByIDTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.mycas.org.uk/service/notification/GetNotificationByIDService" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GetNotificationByIDService" targetNamespace="https://www.mycas.org.uk/service/notification/GetNotificationByIDService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="https://www.mycas.org.uk/service/notification/GetNotificationByIDService" version="1.0">
+      <xs:import schemaLocation="https://213.128.252.7:8003/configESB/http/common/GetNotificationByIDService?wsdl&amp;resource=file-4397636540815135214.tmp&amp;protocol=http" namespace="https://www.mycas.org.uk/schemas/notifications/GetNotificationByIDTypes" />
+      <xs:element name="CallerToken" nillable="true" type="xs:string" />
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:element name="ServiceException" type="tns:ServiceException" />
+      <xs:element name="getNotificationByID" type="tns:getNotificationByID" />
+      <xs:element name="getNotificationByIDResponse" type="tns:getNotificationByIDResponse" />
+      <xs:complexType name="getNotificationByID">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="getNotificationByIDRequest" type="xsd:GetNotificationByIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getNotificationByIDResponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="getNotificationByIDResponse" type="xsd:GetNotificationByIDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exceptionStackTrace" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="messageId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="placeHolderValues" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GetNotificationByIDService_getNotificationByID">
+    <part name="getNotificationByID" element="tns:getNotificationByID" />
+    <part name="CallerToken" element="tns:CallerToken" />
+  </message>
+  <message name="Exception">
+    <part name="Exception" element="tns:Exception" />
+  </message>
+  <message name="ServiceException">
+    <part name="ServiceException" element="tns:ServiceException" />
+  </message>
+  <message name="GetNotificationByIDService_getNotificationByIDResponse">
+    <part name="getNotificationByIDResponse" element="tns:getNotificationByIDResponse" />
+  </message>
+  <portType name="GetNotificationByIDService">
+    <operation name="getNotificationByID" parameterOrder="getNotificationByID CallerToken">
+      <input message="tns:GetNotificationByIDService_getNotificationByID" />
+      <output message="tns:GetNotificationByIDService_getNotificationByIDResponse" />
+      <fault name="Exception" message="tns:Exception" />
+      <fault name="ServiceException" message="tns:ServiceException" />
+    </operation>
+  </portType>
+  <binding name="GetNotificationByIDServiceBinding" type="tns:GetNotificationByIDService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/https" />
+    <operation name="getNotificationByID">
+      <soap:operation soapAction="https://www.mycas.org.uk/service/notification/GetNotificationByIDService/getNotificationByID" />
+      <input>
+        <soap:body use="literal" parts="getNotificationByID" />
+        <soap:header message="tns:GetNotificationByIDService_getNotificationByID" part="CallerToken" use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="GetNotificationByIDServiceService">
+    <port name="GetNotificationByIDServicePort" binding="tns:GetNotificationByIDServiceBinding">
+      <soap:address location="https://213.128.252.7:8003/configESB/http/common/GetNotificationByIDService" />
+    </port>
+  </service>
+</definitions>
